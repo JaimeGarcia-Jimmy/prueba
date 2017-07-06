@@ -7,6 +7,7 @@ package automatas;
 
 import ListaDinamica.Lista_desordenada;
 import ListaDinamica.TDAToken;
+import Utilidades.Utilidades;
 import java.util.ArrayList;
 
 /**
@@ -153,7 +154,7 @@ public class Lexico {
             switch (estadoActual) {
                 
                 case "inicio":
-                    if (Character.isDigit(simbolo)) {
+                    if (Utilidades.esDigito(simbolo)) {
                         estadoActual = "entero";
                     } else if (simbolo == '+' || simbolo == '-') {
                         estadoActual = "q1";
@@ -163,7 +164,7 @@ public class Lexico {
                     break;
                     
                 case "q1":
-                    if (Character.isDigit(simbolo)) {
+                    if (Utilidades.esDigito(simbolo)) {
                         estadoActual = "entero";
                     } else if (simbolo == '.') {
                         estadoActual = "q2";
@@ -173,7 +174,7 @@ public class Lexico {
                     break;
                 
                 case "q2":
-                    if (Character.isDigit(simbolo)) {
+                    if (Utilidades.esDigito(simbolo)) {
                         estadoActual = "real";
                     } else {
                         cadenaRechazada = true;
@@ -181,7 +182,7 @@ public class Lexico {
                     break;
                     
                 case "entero":
-                    if (Character.isDigit(simbolo)) {
+                    if (Utilidades.esDigito(simbolo)) {
                         estadoActual = "entero";
                     } else if (simbolo == '.') {
                         estadoActual = "q2";
@@ -191,7 +192,7 @@ public class Lexico {
                     break;
                     
                 case "real":
-                    if (Character.isDigit(simbolo)) {
+                    if (Utilidades.esDigito(simbolo)) {
                         estadoActual = "real";
                     } else {
                         cadenaRechazada = true;
@@ -228,7 +229,7 @@ public class Lexico {
             switch (estadoActual) {
                 
                 case "inicio":
-                    if (Character.isAlphabetic(simbolo)) {
+                    if (Utilidades.esLetra(simbolo)) {
                         estadoActual = "q1";
                     } else {
                         cadenaRechazada = true;
@@ -236,7 +237,7 @@ public class Lexico {
                     break;
                     
                 case "q1":
-                    if (Character.isDigit(simbolo) || Character.isAlphabetic(simbolo) || simbolo == '_') {
+                    if (Utilidades.esDigito(simbolo) || Utilidades.esLetra(simbolo) || simbolo == '_') {
                         estadoActual = "q1";
                     } else {
                         cadenaRechazada = true;
